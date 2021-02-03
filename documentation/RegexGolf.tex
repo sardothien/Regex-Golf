@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[serbian]{babel} 
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\hypersetup{
+colorlinks,
+linkcolor=blue,
+urlcolor=blue
+}
+\setlength{\textheight}{600pt}
+\setlength{\textwidth}{140mm}
+\setlength{\topmargin}{5pt}
+\setlength{\evensidemargin}{53pt}
+\setlength{\oddsidemargin}{10mm}
+
+\title{%
+  Playing Regex Golf with Genetic Programming \vspace{0.4cm} \\ 
+  \large Projekat u okviru kursa Računarska inteligencija \\
+  Matematički fakultet\\ Univerzitet u Beogradu \vspace*{0.5cm}}
+  
+\author{Anđela Ilić \\
+\href{mailto:mi17105@alas.matf.bg.ac.rs}{mi17105@alas.matf.bg.ac.rs} \\
+Mina Milošević \\
+\href{mailto:mi17081@alas.matf.bg.ac.rs}{mi17081@alas.matf.bg.ac.rs} \\
+}
+
+\date{\vspace*{1cm}Februar 2021}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\renewcommand*\contentsname{Sadržaj}
+\tableofcontents
+\newpage
+
+\section{Opis problema}
+Data su dva skupa reči - M i U. Cilj \textit{Regex Golf} igre je pronaći najkraći regularni izraz kojim se mogu zapisati sve reči iz skupa M, ali kojim se ne može zapisati nijedna reč skupa U. Za date skupove M i U ne možemo sa sigurnošću da tvrdimo da postoji rešenje koje zadovoljava prethodne uslove. Takođe, ako dobijemo regularni izraz koji zadovoljava navedene uslove, ne možemo za svaki primer znati da li postoji i bolje rešenje tj. kraći regularni izraz. 
+
+\section{Implementacija}
+Svaka jedinka u Genetskom programiranju će biti predstavljena kao drvo.
+U listovima nalaze elementi koje ćemo jednim imenom zvati \textit{Terminali} (terminal set), a u unutrašnjim čvorovima su elementi koje nazivamo \textit{Funkcije} (function set). \\
+Skup funkcija sadrži operatore koji se mogu javiti u regularnim izrazima. Primeri takvih operatora su: $.*+$,, $.++$, $.?+$, $.{.,.}+$, $(.)$, $[.]$,
+$[^.]$, $..$, $.|.$. Tačka $.$ je mesto na kome se nalaze deca u drvetu. \\
+Skup terminala čine elementi koji zavise i koji ne zavise od ulaznih skupova M i U. Elementi koji su nezavisni - opsezi malih i velikih slova, brojeva u
+regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter '$..$'. Elementi skupa terminala koji su zavisni - skup karaktera iz M, opsezi karaktera iz M i n-grami.
+
+\subsection{Priprema ulaznih podataka}
+
+
+
+\subsection{Genetsko programiranje}
+\subsubsection{Implementacija jedinki}
+\subsubsection{Parametri genetskog programiranja}
+%\subsubsection{Selekcija, ukrštanje, mutacija}
+
+\section{Rezultati}
+\section{Zaključak}
+\section{Reference}
+
+
+\end{document}
