@@ -47,11 +47,14 @@ U listovima nalaze elementi koje ćemo jednim imenom zvati \textit{Terminali} (t
 Skup funkcija sadrži operatore koji se mogu javiti u regularnim izrazima. Primeri takvih operatora su: $.*+$,, $.++$, $.?+$, $.{.,.}+$, $(.)$, $[.]$,
 $[^.]$, $..$, $.|.$. Tačka $.$ je mesto na kome se nalaze deca u drvetu. \\
 Skup terminala čine elementi koji zavise i koji ne zavise od ulaznih skupova M i U. Elementi koji su nezavisni - opsezi malih i velikih slova, brojeva u
-regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter '$..$'. Elementi skupa terminala koji su zavisni - skup karaktera iz M, opsezi karaktera iz M i n-grami.
+regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter '$..$'. Elementi skupa terminala koji su zavisni - skup karaktera iz M, parcijalni opsezi karaktera iz M i n-grami.
 
-\subsection{Priprema ulaznih podataka}
-
-
+\subsection{Obrada ulaznih podataka}
+Bez obzira na veličinu ulaznih skupova M i U i njihov sadržaj, implementacija prethodno navedenih zavisnih terminala je ista. \\
+\textit{Skup karaktera iz M} sadrži sve karaktere koji se mogu naći u rečima iz M, bez ponavljanja i sortirani po engleskom alfabetu. \\
+\textit{Parcijalni opsezi} se prave na osnovu skupa karaktera iz M. Potrebno je naći maksimalne podskupove tog skupa karaktera tako da se svi karakteri iz intervala $[c_f, c_l]$ nalaze u skupu karaktera iz M. $c_f$ je prvi karakter, a $c_l$ je poslednji karakter iz podskupa. Kao rezultat se vraćaju parcijalni opsezi u formatu $c_f - c_l$. \\
+\textit{n-grami}. Pravimo skup svih n-grama dužine $2 \leq n \leq 4$ koji se mogu naći u M ili u U (ili oba). Svakom dobijenom n-gramu se dodelju vrednost koja predstavlja njegov \textit{score}. Za svaku reč iz M koja sadrži dati n-gram, njegov \textit{score} se uvećava za 1, a za svaku reč iz U koja ga sadrži, \textit{score} se umanjuje za 1. Nakon formiranja svih n-grama i određivanja njihovih vrednosti, sortiraju se opadajuće po vrednosti.
+Potrebno je uzeti najmanji podskup n-grama tako da njihova ukupna vrednost (\textit{score}) bude jednaka bar dužini skupa M ($|M|$).
 
 \subsection{Genetsko programiranje}
 \subsubsection{Implementacija jedinki}
@@ -60,7 +63,7 @@ regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter '$..
 
 \section{Rezultati}
 \section{Zaključak}
-\section{Reference}
+\section{Izvori}
 
 
 \end{document}
