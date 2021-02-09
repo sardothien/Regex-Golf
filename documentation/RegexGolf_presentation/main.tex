@@ -1,0 +1,50 @@
+\documentclass[aspectratio=43]{beamer}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+
+\input{chapters/preamble}
+
+\title[Regex Golf]{Playing Regex Golf with Genetic Programming} 
+\subtitle{Projekat u okviru kursa Računarska inteligencija}
+
+\author[Anđela Ilić, Mina Milošević]{Anđela Ilić \\
+\href{mailto:mi17105@alas.matf.bg.ac.rs}{mi17105@alas.matf.bg.ac.rs} \\
+Mina Milošević \\
+\href{mailto:mi17081@alas.matf.bg.ac.rs}{mi17081@alas.matf.bg.ac.rs} \\
+}
+
+\institute[MATF]{
+    Matematički fakultet%
+    \\%
+    Univerzitet u Beogradu%
+} 
+
+\date[Februar 2021]{Februar 2021}
+%\logo{\includegraphics[width= 0.2\textwidth]{images/a-logo.png}}
+
+\begin{document}
+    
+    \frame{\titlepage}
+    
+    \begin{frame}{Uvod}
+        \tableofcontents
+    \end{frame}
+
+    \input{chapters/opis-problema.tex} 
+    \input{chapters/implementacija.tex}
+    \input{chapters/rezultati.tex}
+    
+    \section*{Reference} 
+        \nocite{Bartoli}
+        % \nocite{Djairo}
+        \begin{frame}{Reference}
+            \printbibliography
+        \end{frame}
+
+    \section{}
+    \begin{frame}{}
+        \centering
+            \Huge\bfseries
+        \textcolor{orange}{KRAJ}
+    \end{frame}
+\end{document}

@@ -1,0 +1,43 @@
+\section{Implementacija}
+    
+    \frame{\sectionpage}
+    
+    \begin{frame}{Terminal i Function skupovi}
+        Svaka jedinka u Genetskom programiranju će biti predstavljena kao drvo. U listovima
+        nalaze elementi koje ćemo jednim imenom zvati \textit{Terminali} (terminal set), a u unutrašnjim čvorovima su elementi koje nazivamo \textit{Funkcije} (function set).
+    \end{frame}
+    
+    \begin{frame}{Terminal i Function skupovi}
+        Skup funkcija sadrži operatore koji se mogu javiti u regularnim izrazima. Primeri takvih operatora su: $.*$, $.+$, $.?$, $.\{.,.\}+$, $(.)$, $[.]$, $[\ \textasciicircum .]$, $..$, $.|.$. Tačka . je mesto na kome se nalaze deca u drvetu. \\
+        Skup terminala čine elementi koji zavise i koji ne zavise od ulaznih skupova M i U. Elementi
+        koji su nezavisni - opsezi malih i velikih slova, brojeva u regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter '$\%$'. Elementi skupa terminala koji su zavisni - skup karaktera iz M,
+        parcijalni opsezi karaktera iz M i n-grami.
+    \end{frame}
+    
+    \begin{frame}{Genetsko programiranje - jedinke}
+        Svaka jedinka se predstavlja preko apstraktnog stabla. U korenu stabla se nalazi karakter ’.’ i koren uvek ima dva deteta. Elementi stabla se biraju random iz  skupova \textit{Function} i \textit{Terminal}. \\
+        Od kreiranog drveta se dobija niska koja predstavlja validan regularni izraz. \\
+        Za svaku jedinku računamo i \textit{fitnes} funkciju po formuli:
+        $$f(x) = w_i * (n_m - n_u) - length(r)$$
+        Ovako definisanu funkciju maksimizujemo.
+    \end{frame}
+    
+    \begin{frame}{Genetsko programiranje - selekcija}
+        Za \textit{selekciju} koristimo turnirsku selekciju veličine 7. Jedinke za selekciju biramo random i uzimamo najbolju jedinku tj. onu koja ima najveći fitnes među odabranim.
+    \end{frame}
+    
+    \begin{frame}{Genetsko programiranje - ukrštanje}
+        
+    \end{frame}
+    
+    \begin{frame}{Genetsko programiranje - mutacija}
+        
+    \end{frame}
+    
+    \begin{frame}{Genetsko programiranje - nova populacija}
+        
+    \end{frame}
+    
+    \begin{frame}{Genetsko programiranje - parametri}
+        
+    \end{frame}

@@ -44,10 +44,12 @@ Data su dva skupa reči - M i U. Cilj \textit{Regex Golf} igre je pronaći najkr
 \section{Implementacija}
 Svaka jedinka u Genetskom programiranju će biti predstavljena kao drvo.
 U listovima nalaze elementi koje ćemo jednim imenom zvati \textit{Terminali} (terminal set), a u unutrašnjim čvorovima su elementi koje nazivamo \textit{Funkcije} (function set). \\
-Skup funkcija sadrži operatore koji se mogu javiti u regularnim izrazima. Primeri takvih operatora su: $.*+$,, $.++$, $.?+$, $.{.,.}+$, $(.)$, $[.]$,
-$[^.]$, $..$, $.|.$. Tačka $.$ je mesto na kome se nalaze deca u drvetu. \\
-Skup terminala čine elementi koji zavise i koji ne zavise od ulaznih skupova M i U. Elementi koji su nezavisni - opsezi malih i velikih slova, brojeva u
-regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter '$..$'. Elementi skupa terminala koji su zavisni - skup karaktera iz M, parcijalni opsezi karaktera iz M i n-grami.
+Skup funkcija sadrži operatore koji se mogu javiti u regularnim izrazima. Primeri takvih operatora su: $.*$, $.+$, $.?$, $.\{.,.\}+$, $(.)$, $[.]$,
+$[\ \textasciicircum .]$, $..$, $.|.$. Tačka $.$ je mesto na kome se nalaze
+deca u drvetu. \\
+Skup terminala čine elementi koji zavise i koji ne zavise od ulaznih skupova M i U. Elementi koji su nezavisni - opsezi malih i velikih slova, opsezi brojeva u
+regularnim izrazima, karakteri $\textasciicircum$ i $\$$, wildcard karakter
+'$\%$' (kasnije se transformiše u .). Elementi skupa terminala koji su zavisni - skup karaktera iz M, parcijalni opsezi karaktera iz M i n-grami.
 
 \subsection{Obrada ulaznih podataka}
 Bez obzira na veličinu ulaznih skupova M i U i njihov sadržaj, implementacija prethodno navedenih zavisnih terminala je ista. \\
@@ -57,9 +59,20 @@ Bez obzira na veličinu ulaznih skupova M i U i njihov sadržaj, implementacija 
 Potrebno je uzeti najmanji podskup n-grama tako da njihova ukupna vrednost (\textit{score}) bude jednaka bar dužini skupa M ($|M|$).
 
 \subsection{Genetsko programiranje}
-\subsubsection{Implementacija jedinki}
+\subsubsection{Implementacija jedinke}
+Svaka jedinka se predstavlja preko \textit{apstraktnog sintaksnog stabla} (AST).
+U korenu stabla se nalazi karakter '$.$' i koren uvek ima dva deteta. Elementi u unutrašnjim čvorovima se biraju \textit{random} iz skupa \textit{Function}, a elementi u listovima su \textit{random} izabrani iz skupa \textit{Terminal}. \\
+Na osnovu izabranog elementa za unutrašnji čvor dobijamo informaciju koliko dece će taj čvor imati - $.*$, $.+$, $.?$, $(.)$, $[.]$, $[\ \textasciicircum .]$ će imati jedno dete; $..$, $.|.$ će imati dva deteta; $.\{.,.\}+$ ima tri deteta. 
+Od ovako kreiranog drveta se dobija niska koja predstavlja validan regularni izraz. \\
+Klasa \textit{Individual} koja predstavlja jedinku takođe sadrži i brojeve $n_m$ i $n_u$ - broj reči iz skupova M i U, redom, koje su opisane dobijenim regularnim izrazom. \\
+Za svaku jedinku računamo i \textit{fitnes} funkciju po formuli:
+$$f(x) = w_i * (n_m - n_u) - length(r)$$
+gde je $w_i$ unapred zadata konstanta za dati primer, a $length(r)$ je dužina regularnog izraza. Pošto želimo što kraći regularni izraz koji obuhvata sve reči iz M i nijednu reč iz U, ovako definisanu funkciju \textit{fitnes} maksimizujemo.
+
 \subsubsection{Parametri genetskog programiranja}
-%\subsubsection{Selekcija, ukrštanje, mutacija}
+
+\subsubsection{Selekcija, ukrštanje, mutacija}
+Za \textit{selekciju} koristimo turnirsku selekciju veličine 7. Jedinke za selekciju biramo random i uzimamo najbolju jedinku tj. onu koja ima najveći fitnes među odabranim.
 
 \section{Rezultati}
 \section{Zaključak}
