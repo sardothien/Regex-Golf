@@ -3,7 +3,7 @@
     \frame{\sectionpage}
     
     \begin{frame}{Terminal i Function skupovi}
-        Svaka jedinka u Genetskom programiranju će biti predstavljena kao drvo. U listovima
+        Svaka jedinka će biti predstavljena kao drvo. U listovima
         nalaze elementi koje ćemo jednim imenom zvati \textit{Terminali} (terminal set), a u unutrašnjim čvorovima su elementi koje nazivamo \textit{Funkcije} (function set).
     \end{frame}
     
@@ -15,29 +15,46 @@
     \end{frame}
     
     \begin{frame}{Genetsko programiranje - jedinke}
-        Svaka jedinka se predstavlja preko apstraktnog stabla. U korenu stabla se nalazi karakter ’.’ i koren uvek ima dva deteta. Elementi stabla se biraju random iz  skupova \textit{Function} i \textit{Terminal}. \\
+        Svaka jedinka se predstavlja preko stabla. U korenu stabla se nalazi karakter ’.’ i koren uvek ima dva deteta. Elementi stabla se biraju nasumično iz  skupova \textit{Function} i \textit{Terminal}. \\
         Od kreiranog drveta se dobija niska koja predstavlja validan regularni izraz. \\
         Za svaku jedinku računamo i \textit{fitnes} funkciju po formuli:
         $$f(x) = w_i * (n_m - n_u) - length(r)$$
-        Ovako definisanu funkciju maksimizujemo.
+        gde je $w_i$ statistički određena konstanta, $n_m$ i $n_u$ brojevi reči iz skupova M i U, redom, koje su opisane dobijenim regularnim izrazom $r$. Ovako definisanu funkciju maksimizujemo.
     \end{frame}
     
     \begin{frame}{Genetsko programiranje - selekcija}
-        Za \textit{selekciju} koristimo turnirsku selekciju veličine 7. Jedinke za selekciju biramo random i uzimamo najbolju jedinku tj. onu koja ima najveći fitnes među odabranim.
+        Za \textit{selekciju} koristimo turnirsku selekciju veličine 7. Jedinke za selekciju biramo nasumično i uzimamo najbolju jedinku tj. onu koja ima najveći fitnes među odabranim.
     \end{frame}
     
     \begin{frame}{Genetsko programiranje - ukrštanje}
-        
+        Koristimo \textit{jednopoziciono ukrštanje}. \\
+        Najpre obilazimo stabla roditelja BFS-om i numerišemo čvorove. \\
+        Biramo jedan broj koji će predstavljati indeks čvora. Tražimo podstabla u roditeljima koja treba da razmene mesta. \\
+        Na kraju treba proveriti da li su regularni izrazi ovako dobijene dece validni. U slučaju da neko dete nije validno, vraćamo odgovarajućeg roditelja umesto njega.
     \end{frame}
     
     \begin{frame}{Genetsko programiranje - mutacija}
-        
-    \end{frame}
-    
-    \begin{frame}{Genetsko programiranje - nova populacija}
-        
+        \textit{Mutaciju} radimo sa verovatnoćom 0.1. Biramo indeks čvora koji želimo da promenimo. Razlikujemo dva slučaja - kada je čvor iz skupa terminala i kada je iz skupa funkcija. \\
+        U prvom slučaju, samo izaberemo nasumično novi terminal i ažuriramo vrednost čvora. \\
+        Ako je čvor bio iz skupa funkcija, biramo novu vrednost iz istog skupa. Treba obratiti pažnju da li se kardinalnost (broj dece) čvora promenila.\\
+        Na kraju opet treba proveriti da li je dobijena jedinka validna. Ako nije, vraćamo jedinku za koju smo i pokrenuli mutaciju. 
     \end{frame}
     
     \begin{frame}{Genetsko programiranje - parametri}
-        
+        Parametri su postavljeni na osnovu podataka iz \cite{Bartoli}:
+        \begin{itemize}
+            \item populaciju čini 500 jedinki
+            \item pravimo 1000 generacija
+            \item turnirska selekcija je dimenzije 7
+            \item verovatnoća mutacije je 0.1
+            \item elitizam iznosi $20\%$
+            \item algoritam pozivamo za 30ak populacija
+        \end{itemize}
+    \end{frame}
+    
+    \begin{frame}{Izlaz programa}
+        Iz svake populacije čuvamo sve jedinke kod kojih važi:
+        $$n_m - n_u = |M|$$
+        Dakle, želimo da sačuvamo sve jedinke kod kojih su ispunjena prva 2 uslova ovog problema. Ako u trenutnoj populaciji ne postoji takva jedinka, čuvamo samo najbolju jedinku na osnovu celokupnog fitnesa. \\
+        Na kraju rada algoritma biramo najbolju jedinku, od svih sačuvanih, po njenom ukupnom fitnesu i nju proglasavamo za rešenjem datog problema.
     \end{frame}
