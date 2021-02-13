@@ -79,7 +79,7 @@ Za \textit{selekciju} koristimo turnirsku selekciju veličine 7. Jedinke
 za selekciju biramo nasumično i uzimamo najbolju jedinku tj. onu koja ima najveći fitnes među odabranim. \\
 Koristimo \textit{jednopoziciono ukrštanje}. Najpre obilazimo stabla roditelja BFS-om i numerišemo čvorove. Uzimamo broj iz intervala $[0, min(len(parent1), len(parent2))]$. Broj 0 odgovara korenu stabla, pa postavljamo \textit{child1} na \textit{parent2}, a \textit{child2} na \textit{parent1}. Inače, ako smo dobili broj veći od 0, tražimo podstabla u roditeljima koja treba da razmene mesta. Na kraju treba proveriti da li su regularni izrazi ovako dobijene dece validni. U slučaju da neko dete nije validno, vraćamo odgovarajućeg roditelja umesto njega. \\
 \textit{Mutaciju} radimo sa verovatnoćom 0.1. Biramo indeks čvora koji želimo da promenimo. Razlikujemo dva slučaja - kada je čvor iz skupa terminala i kada je iz skupa funkcija. U prvom slučaju, samo izaberemo nasumično novi terminal i ažuriramo vrednost čvora.
-Ukoliko je čvor bio iz skupa funkcija, biramo novu vrednost iz istog skupa ali sada treba obratiti pažnju da li treba menjati i njegovu decu. Ako smo izabrali element iste kardinalnosti (isti broj dece), onda samo promenimo vrednost u čvoru. Ako se kardinalnost smanjila, odgovarajuću decu brišemo, a ako se kardinalnost povećala biramo po jednu vrednost iz skupa terminala i postavljamo vrednost dece na nju. Na kraju opet treba proveriti da li je dobijena jedinka validna. Ako nije, vraćamo jedinku za koju smo i pokrenuli mutaciju. \\
+Ukoliko je čvor bio iz skupa funkcija, biramo novu vrednost iz istog skupa ali sada treba obratiti pažnju da li treba menjati i njegovu decu. Ako smo izabrali element iste kardinalnosti (isti broj dece), onda samo promenimo vrednost u čvoru. Ako se kardinalnost smanjila, odgovarajuću decu brišemo, a ako se kardinalnost povećala pravimo novo poddrvo. Na kraju opet treba proveriti da li je dobijena jedinka validna. Ako nije, vraćamo jedinku za koju smo i pokrenuli mutaciju. \\
 U našoj implementaciji koristimo i \textit{elitizam} kako bismo sačuvali najbolje jedinke u populaciji. Elitizmom čuvamo $20\%$ najboljih jedinki.
 
 \subsubsection{Parametri genetskog programiranja}
@@ -129,11 +129,16 @@ U sledećoj tabeli su zabeleženi naši rezultati za odabrane primere. Primeri s
 \multicolumn{1}{l}{}  
 \end{tabular}
 \end{center}
-Vreme izvršavanja programa je nekoliko desetina minuta (najčešće 20-30 minuta). \vspace{0.2cm} \\
+Vreme izvršavanja programa je nekoliko desetina minuta (uglavnom do sat vremena). \vspace{0.2cm} \\
 $*$ U primeru na sajtu \cite{Examples} nije dozvoljeno korišćenje karaktera $\$$, pa su rešenja drugačija. \\
 $**$ Primer je preuzet sa \cite{Presidents}. Nije pronađen podatak o najboljem rešenju pa je zapisan idealan \textit{score}. \\
 $***$ Primer i najbolje rešenje su preuzeti sa \cite{Movies}. Njihovo rešenje je \textit{case insensitive}, dok je naše \textit{case sensitive}. \\
 $****$ Primer je preuzet sa \cite{Regions}. Nije pronađen podatak o najboljem rešenju pa je zapisan idealan \textit{score}.
+
+\section{Zaključak}
+Na osnovu rezultata iz prethodne tabele možemo da zaključimo da naša implementacija ovog problema, zasnovana na \cite{Bartoli}, daje zadovoljavajuće rezultate. Za većinu problema je moguće dobiti 
+bolje rezultate povećavanjem broja populacija ili jedinki u populaciji, ali bi tada vreme izvršavanja bilo dosta veliko. \\
+Takođe, u primeru Movies \cite{Movies} možemo da primetimo da je naš program našao bolje rešenje u odnosu na rešenje koje su ljudi našli (bolje u smislu naše funkcije fitnes, oni su je možda definisali na drugi način), što je veoma ohrabrujuće. \\
 
 \newpage
 \addcontentsline{toc}{section}{Literatura}
